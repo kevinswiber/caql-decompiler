@@ -165,12 +165,24 @@ CaqlDecompiler.prototype.visitComparisonPredicate = function(comparison) {
     comparison.value = normalizeString(comparison.value, isParam);
   }
 
-  var expr = [comparison.field, comparison.operator, comparison.value];
+  var expr = [comparison.field, symbolify(comparison.operator), comparison.value];
   if (comparison.isNegated) {
     expr.unshift('not');
   }
   comparison.array.push(expr.join(' '));
   this.filter.push(expr.join(' '));
+};
+
+
+var symbolify = function(letters) {
+  var map = {
+    gt: '>',
+    gte: '>=',
+    lt: '<',
+    lte: '<='
+  };
+
+  return map.hasOwnProperty(letters) ? map[letters] : letters;
 };
 
 var normalizeString = function(str, isParam) {
