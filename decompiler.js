@@ -74,7 +74,7 @@ CaqlDecompiler.prototype.visitOrderBy = function(orderBy) {
     }
 
     return str;
-  }).join(' ');
+  }).join(', ');
 };
 
 CaqlDecompiler.prototype.visitLocationPredicate = function(location) {
