@@ -128,7 +128,7 @@ CaqlDecompiler.prototype.visitLikePredicate = function(like) {
     like.value = normalizeString(like.value, isParam);
   }
 
-  var expr = [like.field, 'contains', like.value];
+  var expr = [like.field, like.isNegated ? 'not like' : 'like', like.value];
 
   this.filter.push(expr.join(' '));
 };
@@ -147,6 +147,10 @@ CaqlDecompiler.prototype.visitContainsPredicate = function(contains) {
   }
 
   var expr = [contains.field, 'contains', contains.value];
+
+  if (contains.isNegated) {
+    expr.unshift('not');
+  }
 
   this.filter.push(expr.join(' '));
 };

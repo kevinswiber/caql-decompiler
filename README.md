@@ -26,7 +26,7 @@ console.log(ql);
 // Output:
 //
 // select name, founded_year, total_money_raised as worth where 
-// ( founded_year >= 1999 and name contains "%air%" ) order by founded_year desc, name asc
+// ( founded_year >= 1999 and name not like "%air%" ) order by founded_year desc, name asc
  
 ```
 
