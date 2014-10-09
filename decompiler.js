@@ -183,7 +183,8 @@ var symbolify = function(letters) {
     gt: '>',
     gte: '>=',
     lt: '<',
-    lte: '<='
+    lte: '<=',
+    eq: '='
   };
 
   return map.hasOwnProperty(letters) ? map[letters] : letters;
