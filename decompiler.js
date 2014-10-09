@@ -26,14 +26,10 @@ CaqlDecompiler.prototype.decompile = function(ast) {
     }
   });
 
-  if (fields.length === 0) {
-    fields.push('*');
-  }
-
-  var statement = 'select ' + fields.join(', ');
+  var statement = fields.length ? 'select ' + fields.join(', ') + ' ' : '';
 
   if (this.filter.length) {
-    statement += ' where ' + this.filter.join(' ');
+    statement += 'where ' + this.filter.join(' ');
   }
 
   if (this.sorts) {
@@ -44,11 +40,9 @@ CaqlDecompiler.prototype.decompile = function(ast) {
 };
 
 CaqlDecompiler.prototype.visitSelectStatement = function(statement) {
-  if (!statement.fieldListNode.fields.length) {
-    statement.fieldListNode.push('*');
+  if (statement.fieldListNode.fields.length) {
+    statement.fieldListNode.accept(this);
   }
-
-  statement.fieldListNode.accept(this);
 
   if (statement.filterNode) {
     statement.filterNode.accept(this);

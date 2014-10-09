@@ -1,6 +1,6 @@
 {
   "name": "caql-decompiler",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Decompiles a CaQL AST into a plaintext query.",
   "main": "decompiler.js",
   "dependencies": {
